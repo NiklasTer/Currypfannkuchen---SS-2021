@@ -1,3 +1,6 @@
+This repository will be used in a Workshop guided by H. Bohnacker in the first week of the second semester.
+Contributors:
+Sarah Franke, Antonia Gruber, Julia Klotz and Niklas Terodde
 # Browser-MQTT-Communication
 
 This setup allows sending messages through an mqtt broker from web browsers to web browsers.
