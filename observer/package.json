@@ -1,0 +1,17 @@
+{
+  "name": "franklin_setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./client.js 3000 \"#\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mqtt": "^4.2.6",
+    "socketio": "^1.0.0"
+  }
+}
