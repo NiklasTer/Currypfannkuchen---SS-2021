@@ -1,9 +1,10 @@
 // Connecting to server. Don't touch this :-) 
 let socket = io();
-
-
+let player1color= `#f80`
+let element = document.createElement("button");
 let myPlayerIndex = 1;
-let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
+let playerColors = [player1color, '#08f', '#80f', '#0f8', '#8f0', '#f08']
+
 let playerCount = 0;
 // let whosTurn = 0;
 
@@ -13,6 +14,17 @@ $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 18px)");
 for (let i = 0; i < gridSize*gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
+
+function createButton() {
+    let page = document.getElementById("btn");
+    page.appendChild(element);
+  
+    console.log(element);
+  }
+  
+  createButton(
+     element.appendChild(document.createTextNode("1")));
+
 
 $('.cell').click(function() {
     console.log(myPlayerIndex)
