@@ -1,7 +1,6 @@
 // Connecting to server. Don't touch this :-) 
 let socket = io();
-let player1color= `#f80`
-let element = document.createElement("button");
+let player1color = `#f80`
 let myPlayerIndex = 1;
 let playerColors = [player1color, '#08f', '#80f', '#0f8', '#8f0', '#f08']
 
@@ -11,27 +10,35 @@ let playerCount = 0;
 let gridSize = 55;
 $('.wrapper').children().remove();
 $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 18px)");
-for (let i = 0; i < gridSize*gridSize; i++) {
+for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 
-function createButton() {
+function createButton(buttonText, color) {
+    let element = document.createElement("button");
+    element.appendChild(document.createTextNode(buttonText))
     let page = document.getElementById("btn");
     page.appendChild(element);
-  
+
     console.log(element);
-  }
-  
-  createButton(
-     element.appendChild(document.createTextNode("1")));
+}
 
 
-$('.cell').click(function() {
+player1color = `#f80`
+createButton("1", player1color);
+createButton("Hallo");
+
+
+$('.cell').click(function () {
     console.log(myPlayerIndex)
-    socket.emit('serverEvent', {type:"played", playerIndex:myPlayerIndex, cellIndex:$(this).index()});
+    socket.emit('serverEvent', {
+        type: "played",
+        playerIndex: myPlayerIndex,
+        cellIndex: $(this).index()
+    });
     if (whosTurn == myPlayerIndex && $(this).hasClass("empty")) {
         // console.log(this);
-       
+
     }
 });
 
@@ -39,7 +46,9 @@ $('.cell').click(function() {
 // Incoming events 
 socket.on('connected', function (msg) {
     console.log(msg);
-    socket.emit('serverEvent', {type:"reset"});
+    socket.emit('serverEvent', {
+        type: "reset"
+    });
 });
 
 socket.on('serverEvent', function (message) {
@@ -84,7 +93,7 @@ function updateStatus() {
     $('#player-status').html("There are " + playerCount + " players connected");
 
     $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
-    $('body').css("background-color", playerColors[myPlayerIndex]+"4"); // background color like playing color but less opacity
+    $('body').css("background-color", playerColors[myPlayerIndex] + "4"); // background color like playing color but less opacity
 
     // if (whosTurn == myPlayerIndex) {
     //     $('#turn-status').html("It's your turn.");
