@@ -49,3 +49,12 @@ body {
     border: 1px solid #0004;
     background-color: white;
 }
+
+.button {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color:#0088ff;
+    left: 20px;
+    top: 200px;
+}

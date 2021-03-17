@@ -1,6 +1,8 @@
 // Connecting to server. Don't touch this :-) 
 let socket = io();
 let player1color = `#f80`
+let player1color2 = `#08f`
+let player1color3 = '#80f'
 let myPlayerIndex = 1;
 let playerColors = [player1color, '#08f', '#80f', '#0f8', '#8f0', '#f08']
 
@@ -14,19 +16,25 @@ for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 
-function createButton(buttonText, color) {
-    let element = document.createElement("button");
-    element.appendChild(document.createTextNode(buttonText))
-    let page = document.getElementById("btn");
-    page.appendChild(element);
+// function createButton(buttonText, color) {
+//     let element = document.createElement("button");
+//     element.appendChild(document.createTextNode(buttonText))
+//     let page = document.getElementById("btn");
+//     page.appendChild(element);
 
-    console.log(element);
+//     console.log(element);
+// }
+
+
+// player1color = `#f80`
+// createButton("1", player1color);
+// createButton("Hallo");
+
+$('.button').click(handleButtonClick);
+
+function handleButtonClick(ev) {
+    socket.emit('serverEvent', "color2");
 }
-
-
-player1color = `#f80`
-createButton("1", player1color);
-createButton("Hallo");
 
 
 $('.cell').click(function () {
@@ -72,7 +80,15 @@ socket.on('serverEvent', function (message) {
         updateStatus();
     }
 
+    if (message == "color2") {
+        player1color=player1color2
+        $('#button1').css("background-color",player1color2);
+        myPlayerIndex++
+    }
+
 });
+
+
 
 socket.on('newUsersEvent', function (myID, myIndex, userList) {
     console.log("New users event: ");
