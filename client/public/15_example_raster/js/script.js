@@ -4,7 +4,7 @@ let player1color = `#f80`
 let player1color2 = `#08f`
 let player1color3 = '#80f'
 let myPlayerIndex = 1;
-let playerColors = [player1color, '#08f', '#80f', '#0f8', '#8f0', '#f08']
+let playerColors = [player1color, player1color2, player1color3, '#0f8', '#8f0', '#f08']
 
 let playerCount = 0;
 // let whosTurn = 0;
@@ -30,10 +30,20 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 // createButton("1", player1color);
 // createButton("Hallo");
 
-$('.button').click(handleButtonClick);
+$('#button1').click(handleButtonClick);
+
+//document.getElementById("button1").click(handleButtonClick);
 
 function handleButtonClick(ev) {
     socket.emit('serverEvent', "color2");
+}
+
+// document.getElementById("button2").click(handleButtonClick);
+
+$('#button2').click(handleButtonClick);
+function handleButtonClick(ev) {
+    socket.emit('serverEvent', "color3");
+    console.log("button2")
 }
 
 
@@ -81,10 +91,16 @@ socket.on('serverEvent', function (message) {
     }
 
     if (message == "color2") {
-        player1color=player1color2
+        player1color=player1color2 &= player1color3=player1color2;
         $('#button1').css("background-color",player1color2);
         myPlayerIndex++
     }
+
+    // if (message == "color3") {
+    //     player1color=player1color3 &= player1color2=player1color3
+    //     $('#button1').css("background-color",player1color3);
+    //     myPlayerIndex++
+    // }
 
 });
 
