@@ -2,7 +2,7 @@
 let socket = io();
 
 
-let myPlayerIndex = 0;
+let myPlayerIndex = 1;
 let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 // let whosTurn = 0;
@@ -16,9 +16,10 @@ for (let i = 0; i < gridSize*gridSize; i++) {
 
 $('.cell').click(function() {
     console.log(myPlayerIndex)
+    socket.emit('serverEvent', {type:"played", playerIndex:myPlayerIndex, cellIndex:$(this).index()});
     if (whosTurn == myPlayerIndex && $(this).hasClass("empty")) {
         // console.log(this);
-        socket.emit('serverEvent', {type:"played", playerIndex:myPlayerIndex, cellIndex:$(this).index()});
+       
     }
 });
 
@@ -43,9 +44,9 @@ socket.on('serverEvent', function (message) {
         cell = $(cell);
         cell.removeClass("empty");
         cell.css("background-color", playerColors[message.playerIndex]);
-        whosTurn++;
+        // whosTurn++;
         if (whosTurn >= playerCount) {
-            whosTurn = 0;
+            whosTurn = 1;
         }
         updateStatus();
     }
