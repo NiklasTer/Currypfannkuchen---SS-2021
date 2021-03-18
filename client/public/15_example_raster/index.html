@@ -3,31 +3,61 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malen nach Zahlen</title>
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="./lib/jquery-3.5.1.js"></script>
+
+
 </head>
 
 <body id="body">
 
     <div class="info" id="spiel-info">
-        Male die Felder in den vorgegebenen Farben aus.
-        <p>Gemeinsam erhaltet ihr ein Bild.</p>
+      <h3>Pixelbilder malen</h3>
+      <br></br>
+      <p>Wähle eine der Farben aus</p>
+      <p>(diese sind mit Buchstaben gekennzeichnet)</p>
+      <p>und suche das passende Feld, mit demselben</p>
+      <p> Buchstaben. Fülle das Feld in der Farbe</p>
+      <p> mit einem Mausklick aus und wiederhole</p> 
+      <p> dies mit allen anderen Feldern.</p>
+      <p>Deine Mitspieler füllen das Bild mit ihren Farben.</p>
+      <h4>Gemeinsam erhaltet ihr ein Bild.</h4>
         
      </div>
 
-    <div class="status" id="player-status">
-        There are 4 players connected.
-      </div>
-  
-      <div class="status" id="color-status">
-        <div class="inline">Your playing color is</div> <div class="inline" id="playcolor"></div>
-      </div>
-  
-      <!-- <div class="status" id="turn-status">
-        It's your turn.
+    <!-- <div class="status" id="player-status">
+        Es sind 4 Spieler verbunden.
       </div> -->
+  
+      <!-- <div class="status" id="color-status">
+        <div class="inline">Your playing color is</div> <div class="inline" id="playcolor"></div>
+      </div> -->
+  
+      
+      <div class="info" id="paletten-info">
+        <h4s>Das sind deine Farben</h4>
+      </div>
+
+      <br></br>
+      <br></br>
+      <br></br>
+      <img width="20%" height="20%" src="assets/redBrush.png">
+      <br></br>
+      <img width="20%" height="20%" src="assets/blueBrush.png">
+      <br></br>
+      <img width="20%" height="20%" src="assets/greenBrush.png">
+
+      <div class="block" id="block1"></div>
+      <div class="block" id="block2"></div>
+      <div class="block" id="block3"></div>
+
+  
+      <div class="status" id="player-status">
+        Es sind 4 Spieler verbunden.
+      </div>
 
       <div class="wrapper">
         <div class="cell empty"></div>
