@@ -1,14 +1,13 @@
 // Connecting to server. Don't touch this :-) 
 let socket = io();
-
-let imageColors = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
-// TODO: generate playerColors from imageColors
-let playerColors = [['yellow', 'blue'], ['red', 'green'], ['lime', 'tomato']];
+let player1color = `#f80`
+let player1color2 = `#08f`
+let player1color3 = '#80f'
 let myPlayerIndex = 1;
-let selectedColorIndex = 0;
+let playerColors = [player1color, player1color2, player1color3, '#0f8', '#8f0', '#f08']
 
 let playerCount = 0;
-
+// let whosTurn = 0;
 
 let gridSize = 55;
 $('.wrapper').children().remove();
@@ -17,13 +16,37 @@ for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 
-$('#button1').click(function() {
-    selectedColorIndex = 0;
-});
+// function createButton(buttonText, color) {
+//     let element = document.createElement("button");
+//     element.appendChild(document.createTextNode(buttonText))
+//     let page = document.getElementById("btn");
+//     page.appendChild(element);
 
-$('#button2').click(function() {
-    selectedColorIndex = 1;
-});
+//     console.log(element);
+// }
+
+
+// player1color = `#f80`
+// createButton("1", player1color);
+// createButton("Hallo");
+
+$('#button1').click(handleButtonClick);
+
+
+
+//document.getElementById("button1").click(handleButtonClick);
+
+function handleButtonClick(ev) {
+    socket.emit('serverEvent', playerColors[3]);
+}
+
+// document.getElementById("button2").click(handleButtonClick);
+
+// $('#button2').click(handleButtonClick);
+// function handleButtonClick(ev) {
+//     socket.emit('serverEvent', "color3");
+//     console.log("button2")
+// }
 
 
 $('.cell').click(function () {
@@ -31,7 +54,6 @@ $('.cell').click(function () {
     socket.emit('serverEvent', {
         type: "played",
         playerIndex: myPlayerIndex,
-        selectedColorIndex: selectedColorIndex,
         cellIndex: $(this).index()
     });
     if (whosTurn == myPlayerIndex && $(this).hasClass("empty")) {
@@ -62,13 +84,26 @@ socket.on('serverEvent', function (message) {
         let cell = $('.wrapper').children()[message.cellIndex];
         cell = $(cell);
         cell.removeClass("empty");
-        cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+        cell.css("background-color", playerColors[message.playerIndex]);
         // whosTurn++;
         if (whosTurn >= playerCount) {
             whosTurn = 1;
         }
         updateStatus();
     }
+
+    if (message.type == "playerColors") {
+        player1color=player1color2 &= player1color3=player1color2;
+        $('#button1').css("background-color",playerColors[message.value]);
+        myPlayerIndex++
+    }
+
+    // if (message == "color3") {
+    //     player1color=player1color3 &= player1color2=player1color3
+    //     $('#button1').css("background-color",player1color3);
+    //     myPlayerIndex++
+    // }
+
 });
 
 
@@ -94,4 +129,9 @@ function updateStatus() {
     $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
     $('body').css("background-color", playerColors[myPlayerIndex] + "4"); // background color like playing color but less opacity
 
+    // if (whosTurn == myPlayerIndex) {
+    //     $('#turn-status').html("It's your turn.");
+    // } else {
+    //     $('#turn-status').html("Waiting for player " + (whosTurn+1) + ".");        
+    // }
 }
