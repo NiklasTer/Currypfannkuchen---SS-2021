@@ -4,87 +4,68 @@
 }
 
 body {
-    padding: 25px;
+    display: flex;
     background-color: white;
     color: #000;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 12px;
 }
 
-.block{
-    position: absolute;
-    width: 500px;
+.left-container {
+    width: 300px;
     height: 100vh;
     background-color: #FFF5E1;
-    left: 0px;
-    top:0;
-    z-index: -1;
 }
 
-#block2{
-    position: absolute;
-    width: 500px;
-    height: 180px;
-    background-color: #FFDFA1;
-    left: 25pxpx;
-    top: 80px;
-    z-index: -1;
-}
-
-#block3{
-    position: absolute;
-    width: 500px;
-    height: 70px;
-    background-color: #FFDFA1;
-    left: 0px;
-    top: 92%;
-    z-index: -1;
-}
-
-.status {
-    /*height: 30px;*/
-    margin-bottom: 20px;
-    vertical-align: center;
-    position: absolute;
-    left: 25px;
-    bottom: 0px;
-    /* padding-left:1400px; */
-}
-
-.inline {
-    display: inline-block;  
-}
 
 .info {
-    font-size: 20px;
-    margin-bottom: 20px;
+    background-color: #FFDFA1;
+    padding: 15px;
+    margin-bottom: 15px;
 }
 
 #paletten-info {
-    font-size: 20px;
+    background-color: #FFF5E1;
     margin-bottom: 20px;
-    position: absolute;
     left: 25px;
     top: 300px;
 
 }
 
-/* #playcolor {
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 10px;
-} */
+#brushes {
+    padding: 20px;
+}
+
+.brush > img {
+    width: 100%;
+}
+
+
+.status {
+    /*height: 30px;*/
+    background-color: #FFDFA1 ;
+    padding: 15px;
+    margin-bottom: 20px;
+    /* vertical-align: center; */
+    left: 25px;
+    bottom: 100%;
+    
+}
+
+
+.grid-container {
+    display:flex;
+    height:100vh;
+    flex-grow: 2;
+    justify-content: center;
+    align-items: center;
+}
 
 .wrapper {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
+    grid-template-columns: repeat(4, 5px);
     grid-gap: 0px;
-    grid-auto-rows: minmax(10px, auto);
-    position:absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    grid-auto-rows: minmax(15px, auto);
 }
 
 .cell {

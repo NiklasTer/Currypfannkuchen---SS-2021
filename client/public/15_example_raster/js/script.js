@@ -9,7 +9,7 @@ let playerCount = 0;
 
 let gridSize = 55;
 $('.wrapper').children().remove();
-$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 10px)");
+$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 15px)");
 for (let i = 0; i < gridSize*gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
