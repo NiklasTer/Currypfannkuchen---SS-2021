@@ -1,22 +1,24 @@
+
 // Connecting to server. Don't touch this :-) 
 let socket = io();
 
+//------------globale Variablen------------------
+
+let playerCount = 0;
 let imageColors = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
-// TODO: generate playerColors from imageColors
 let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
 
-let playerCount = 0;
 
-
+//------------Div-Grid------------------
 let gridSize = 55;
 $('.wrapper').children().remove();
-$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 18px)");
+$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
 for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
-
+//------------Farb-Buttons------------------
 $('#button1').click(function() {
     selectedColorIndex = 0;
 });
@@ -32,6 +34,38 @@ $('#button3').click(function() {
 });
 $('#button3').css("background-color", playerColors[myPlayerIndex][2]);
 
+//------------Aufrufen des Bildes und Canvas------------------
+
+var img = new Image();
+img.crossOrigin = 'anonymous';
+img.src = './assets/Schmetterling770x770.png';
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext('2d');
+img.onload = function() {
+  ctx.drawImage(img, 0, 0);
+  img.style.display = 'none';
+};
+
+//------------Farb-Ausleser------------------
+
+var hoveredColor = document.getElementById('hovered-color');
+var selectedColor = document.getElementById('selected-color');
+
+
+// function pick(event, destination) {
+//   var x = event.layerX;
+//   var y = event.layerY;
+//   var pixel = ctx.getImageData(0, 0, length, width);
+//   var data = pixel.data;
+// 	const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
+// }
+
+//------------RGBA zu HEX Konvertieren------------------
+
+//hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+
+//------------Klicken&Senden------------------
+
 $('.cell').click(function () {
     console.log(myPlayerIndex)
     socket.emit('serverEvent', {
@@ -45,10 +79,8 @@ $('.cell').click(function () {
     }
 });
 
+//------------Eingehende Aktionen------------------
 
-
-
-// Incoming events 
 socket.on('connected', function (msg) {
     console.log(msg);
     socket.emit('serverEvent', {
@@ -77,7 +109,7 @@ socket.on('serverEvent', function (message) {
     }
 });
 
-
+//------------Reset/Neuer Nutzer kommt hinzu------------------
 
 socket.on('newUsersEvent', function (myID, myIndex, userList) {
     console.log("New users event: ");
@@ -92,12 +124,11 @@ socket.on('newUsersEvent', function (myID, myIndex, userList) {
     updateStatus();
 });
 
-
+//------------Update-Funktion------------------
 
 function updateStatus() {
     $('#player-status').html("There are " + playerCount + " players connected");
 
     $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
-    $('body').css("background-color", playerColors[myPlayerIndex] + "4"); // background color like playing color but less opacity
-
+    $('body').css("background-color", playerColors[myPlayerIndex] + "4"); 
 }

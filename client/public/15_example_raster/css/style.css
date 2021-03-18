@@ -38,13 +38,21 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 50px);
     grid-gap: 0px;
-    grid-auto-rows: minmax(18px, auto);
+    grid-auto-rows: minmax(14px, auto);
     position:absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    opacity: 80%;
 }
 
+    #canvas {
+        position:absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); 
+
+}
 .cell {
     border: 1px solid #0004;
     background-color: white;
