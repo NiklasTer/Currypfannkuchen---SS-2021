@@ -34,6 +34,17 @@ $('#button3').click(function() {
 });
 $('#button3').css("background-color", playerColors[myPlayerIndex][2]);
 
+
+// //------------RGBA zu HEX Konvertieren------------------
+function rgbToHex(r, g, b) {
+    
+    if (r > 255 || g > 255 || b > 255)
+    
+    throw "Invalid color component";
+    
+    return ((r << 16) | (g << 8) | b).toString(16);
+    }
+
 //------------Aufrufen des Bildes und Canvas------------------
 
 function initContext(canvasID, contextType)
@@ -50,6 +61,7 @@ function loadImage(imageSource, context)
     {
         context.drawImage(imageObj, 0, 0);
         var imageData = context.getImageData(0,0,770,770);
+        hex = "#" + ("000000" + rgbToHex(ImageData[0], ImageData[1], ImageData[2])).slice(-6);
         readImage(imageData);
     };
     imageObj.src = imageSource;
@@ -58,7 +70,6 @@ function loadImage(imageSource, context)
 
 function readImage(imageData)
 {
-    
 
         for (var i = 0; i < imageData.length; i += 4) {
             var red = imageData[i];
@@ -66,18 +77,20 @@ function readImage(imageData)
             blue = imageData[i + 2];
             alpha = imageData[i + 3];
         }
-        console.log(imageData);
-    console.log();
-    console.log(imageData.data[0]);
+         
+        //onsole.log(imageData);
+    console.log(rgbToHex);
+    //console.log(hex);
+    //console.log(imageData.data[0]);
 }
 
 var context = initContext('canvas','2d');
 var imageObj = loadImage('./assets/Schmetterling770x770.png',context);
 
 
-// //------------RGBA zu HEX Konvertieren------------------
 
-//hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
+    //let data = canvas.getContext('2d').getImageData(0, 0, 770, 770).data;
+
 
 //------------Klicken&Senden------------------
 
