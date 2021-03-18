@@ -36,31 +36,46 @@ $('#button3').css("background-color", playerColors[myPlayerIndex][2]);
 
 //------------Aufrufen des Bildes und Canvas------------------
 
-var img = new Image();
-img.crossOrigin = 'anonymous';
-img.src = './assets/Schmetterling770x770.png';
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
-img.onload = function() {
-  ctx.drawImage(img, 0, 0);
-  img.style.display = 'none';
-};
+function initContext(canvasID, contextType)
+{
+   var canvas = document.getElementById(canvasID);
+   var context = canvas.getContext(contextType);
+   return context;
+}
 
-//------------Farb-Ausleser------------------
+function loadImage(imageSource, context)
+{
+    var imageObj = new Image();
+    imageObj.onload = function()
+    {
+        context.drawImage(imageObj, 0, 0);
+        var imageData = context.getImageData(0,0,770,770);
+        readImage(imageData);
+    };
+    imageObj.src = imageSource;
+    return imageObj;
+}
 
-var hoveredColor = document.getElementById('hovered-color');
-var selectedColor = document.getElementById('selected-color');
+function readImage(imageData)
+{
+    
+
+        for (var i = 0; i < imageData.length; i += 4) {
+            var red = imageData[i];
+            green = imageData[i + 1];
+            blue = imageData[i + 2];
+            alpha = imageData[i + 3];
+        }
+        console.log(imageData);
+    console.log();
+    console.log(imageData.data[0]);
+}
+
+var context = initContext('canvas','2d');
+var imageObj = loadImage('./assets/Schmetterling770x770.png',context);
 
 
-// function pick(event, destination) {
-//   var x = event.layerX;
-//   var y = event.layerY;
-//   var pixel = ctx.getImageData(0, 0, length, width);
-//   var data = pixel.data;
-// 	const rgba = `rgba(${data[0]}, ${data[1]}, ${data[2]}, ${data[3] / 255})`;
-// }
-
-//------------RGBA zu HEX Konvertieren------------------
+// //------------RGBA zu HEX Konvertieren------------------
 
 //hex = "#" + ("000000" + rgbToHex(data[0], data[1], data[2])).slice(-6);
 
