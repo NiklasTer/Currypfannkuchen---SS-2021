@@ -3,7 +3,7 @@ let socket = io();
 
 let imageColors = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 // TODO: generate playerColors from imageColors
-let playerColors = [['yellow', 'blue'], ['red', 'green'], ['lime', 'tomato']];
+let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange']];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
 
@@ -20,11 +20,17 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 $('#button1').click(function() {
     selectedColorIndex = 0;
 });
+$('#button1').css("background-color", playerColors[myPlayerIndex][0]);
 
 $('#button2').click(function() {
     selectedColorIndex = 1;
 });
+$('#button2').css("background-color", playerColors[myPlayerIndex][1]);
 
+$('#button3').click(function() {
+    selectedColorIndex = 2;
+});
+$('#button3').css("background-color", playerColors[myPlayerIndex][2]);
 
 $('.cell').click(function () {
     console.log(myPlayerIndex)
@@ -35,10 +41,11 @@ $('.cell').click(function () {
         cellIndex: $(this).index()
     });
     if (whosTurn == myPlayerIndex && $(this).hasClass("empty")) {
-        // console.log(this);
 
     }
 });
+
+
 
 
 // Incoming events 
@@ -63,7 +70,6 @@ socket.on('serverEvent', function (message) {
         cell = $(cell);
         cell.removeClass("empty");
         cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
-        // whosTurn++;
         if (whosTurn >= playerCount) {
             whosTurn = 1;
         }
