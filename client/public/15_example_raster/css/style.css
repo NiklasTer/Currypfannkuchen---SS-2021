@@ -21,35 +21,29 @@ body {
 .info {
     background-color: #FFDFA1;
     padding: 15px;
+    margin-top: 15px;
     margin-bottom: 15px;
 }
 
-#paletten-info {
-    background-color: #FFF5E1;
-    margin-bottom: 20px;
-    left: 25px;
-    top: 300px;
 
-}
 
 #brushes {
     padding: 20px;
+    margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 .brush > img {
     width: 100%;
+    height: 100%;
 }
 
 
 .status {
-    /*height: 30px;*/
     background-color: #FFDFA1 ;
     padding: 15px;
-    margin-bottom: 20px;
-    /* vertical-align: center; */
-    left: 25px;
-    bottom: 100%;
-    
+    margin-top: 260px;
+
 }
 
 
@@ -65,7 +59,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 5px);
     grid-gap: 0px;
-    grid-auto-rows: minmax(15px, auto);
+    grid-auto-rows: minmax(14.5px, auto);
 }
 
 .cell {
