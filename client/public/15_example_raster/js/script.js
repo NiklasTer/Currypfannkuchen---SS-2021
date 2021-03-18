@@ -3,7 +3,7 @@ let socket = io();
 
 let imageColors = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 // TODO: generate playerColors from imageColors
-let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange']];
+let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
 
