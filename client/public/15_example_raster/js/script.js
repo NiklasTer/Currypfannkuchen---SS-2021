@@ -9,7 +9,7 @@ let socket = io();
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
-let myPlayerIndex = 0;
+let myPlayerIndex = 1;
 let selectedColorIndex = 0;
 
 
@@ -23,16 +23,19 @@ for (let i = 0; i < gridSize*gridSize; i++) {
 //------------Farb-Buttons------------------
 $('#brush1').click(function() {
     selectedColorIndex = 0;
+    $("#brush1").toggleClass("transparent");
 });
 $('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
 $('#brush2').click(function() {
     selectedColorIndex = 1;
+    $("#brush2").toggleClass("transparent");
 });
 $('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
 $('#brush3').click(function() {
     selectedColorIndex = 2;
+    $("#brush3").toggleClass("transparent");
 });
 $('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
