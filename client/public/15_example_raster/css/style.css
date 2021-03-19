@@ -29,14 +29,29 @@ body {
 
 #brushes {
     padding: 20px;
-    margin-bottom: 100px;
-    margin-top: 100px;
+    margin-bottom: 50px;
+    margin-top: 50px;
 }
 
-.brush > img {
+/* .brush > img {
+    width: 100%;
+    height: 100%;
+} */
+.brush > svg {
     width: 100%;
     height: 100%;
 }
+
+#brush1 {
+    fill:#439e5f;
+}
+#brush2 {
+    fill:#99c7f8;
+}
+#brush3 {
+    fill:#ffbc00;
+}
+
 
 
 .status {
@@ -59,7 +74,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 5px);
     grid-gap: 0px;
-    grid-auto-rows: minmax(14.5px, auto);
+    grid-auto-rows: minmax(14px, auto);
 }
 
 .cell {
