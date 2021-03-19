@@ -1,4 +1,3 @@
-
 // Connecting to server. Don't touch this :-) 
 let socket = io();
 
@@ -8,30 +7,35 @@ let socket = io();
 // let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
-let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
+let playerColors = [
+    ['yellow', 'blue', `black`],
+    ['red', 'green', `pink`],
+    ['lime', 'tomato', 'orange'],
+    ['purple', 'grey', 'turquoise']
+];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
-
+let str = "o"
 
 //------------Div-Grid------------------
 let gridSize = 55;
 $('.wrapper').children().remove();
 $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-for (let i = 0; i < gridSize*gridSize; i++) {
+for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 //------------Farb-Buttons------------------
-$('#button1').click(function() {
+$('#button1').click(function () {
     selectedColorIndex = 0;
 });
 $('#button1').css("background-color", playerColors[myPlayerIndex][0]);
 
-$('#button2').click(function() {
+$('#button2').click(function () {
     selectedColorIndex = 1;
 });
 $('#button2').css("background-color", playerColors[myPlayerIndex][1]);
 
-$('#button3').click(function() {
+$('#button3').click(function () {
     selectedColorIndex = 2;
 });
 $('#button3').css("background-color", playerColors[myPlayerIndex][2]);
@@ -39,33 +43,30 @@ $('#button3').css("background-color", playerColors[myPlayerIndex][2]);
 
 // //------------RGBA zu HEX Konvertieren------------------
 function rgbToHex(r, g, b) {
-    
+
     if (r > 255 || g > 255 || b > 255)
-    
-    throw "Invalid color component";
-    
+
+        throw "Invalid color component";
+
     return ((r << 16) | (g << 8) | b).toString(16);
-    }
+}
 
 //------------Aufrufen des Bildes und Canvas------------------
 
-function initContext(canvasID, contextType)
-{
-   var canvas = document.getElementById(canvasID);
-   var context = canvas.getContext(contextType);
-   return context;
+function initContext(canvasID, contextType) {
+    var canvas = document.getElementById(canvasID);
+    var context = canvas.getContext(contextType);
+    return context;
 }
 
-function loadImage(imageSource, context)
-{
+function loadImage(imageSource, context) {
     var imageObj = new Image();
-    imageObj.onload = function()
-    {
+    imageObj.onload = function () {
         context.imageSmoothingEnabled = false;
-        context.drawImage(imageObj, 0, 0,770,770);
-        var imageData = context.getImageData(0,0,770,770);
+        context.drawImage(imageObj, 0, 0, 770, 770);
+        var imageData = context.getImageData(0, 0, 770, 770);
         readImage(imageData);
-        
+
     };
     imageObj.src = imageSource;
     return imageObj;
@@ -73,38 +74,37 @@ function loadImage(imageSource, context)
 
 let pixelColors = [];
 
-function readImage(imageData)
-{
-          for (let i = 0; i < imageData.data.length; i += 4) {
-              // Iterationsnummer 4 inkorrekt - 3 besser?
-            var red = imageData.data[i];
-            var green = imageData.data[i+1];
-            var blue = imageData.data[i+2];
-            var string = "/y"
-            var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6) + string;
-            pixelColors.push(hex);
-            // pixelColors.push(string);
-            
-        }
-        console.log(pixelColors);
-      
-//         console.log(imageData);
-//     console.log(rgbToHex);
-//     //console.log(hex);
-//     console.log(imageData.data[0]);
- }
+function readImage(imageData) {
+    for (let i = 0; i < imageData.data.length; i += 4) {
+        // Iterationsnummer 4 inkorrekt - 3 besser?
+        var red = imageData.data[i];
+        var green = imageData.data[i + 1];
+        var blue = imageData.data[i + 2];
+        var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6);
+        pixelColors.push({hex:hex, str:str});
+        
 
-var context = initContext('canvas','2d');
-var imageObj = loadImage('./assets/Schmetterling55x55px.png',context);
+    }
+    console.log(pixelColors);
+
+    //         console.log(imageData);
+    //     console.log(rgbToHex);
+    //     //console.log(hex);
+    //     console.log(imageData.data[0]);
+}
+
+var context = initContext('canvas', '2d');
+var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
 
 //------------If-Sortierung nach HEX-Codes------------------
-// for (let i = 0; i < pixelColors.length; i++) {
-// if (pixelColors[i] =) {
+for (let i = 0; i < pixelColors.length; i++) {
+    //console.log("treffer")
     
-// }
-    
-// }
-    
+    if (pixelColors[i].hex === "#439e5f") {
+        console.log("treffer2")
+        pixelColors[i].str = "1"
+    }
+}
 
 
 //------------Klicken&Senden------------------
@@ -173,5 +173,5 @@ function updateStatus() {
     $('#player-status').html("Es sind " + playerCount + " Spieler verbunden");
 
     $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
-    $('body').css("background-color", playerColors[myPlayerIndex] + "4"); 
+    $('body').css("background-color", playerColors[myPlayerIndex] + "4");
 }
