@@ -5,7 +5,7 @@ let socket = io();
 //------------globale Variablen------------------
 
 let playerCount = 0;
-let imageColors = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
+let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
@@ -59,33 +59,39 @@ function loadImage(imageSource, context)
     var imageObj = new Image();
     imageObj.onload = function()
     {
-        context.drawImage(imageObj, 0, 0);
+        context.imageSmoothingEnabled = false;
+        context.drawImage(imageObj, 0, 0,770,770);
         var imageData = context.getImageData(0,0,770,770);
-        hex = "#" + ("000000" + rgbToHex(ImageData[0], ImageData[1], ImageData[2])).slice(-6);
         readImage(imageData);
+        
     };
     imageObj.src = imageSource;
     return imageObj;
 }
 
+let pixelColors = [];
+
 function readImage(imageData)
 {
-
-        for (var i = 0; i < imageData.length; i += 4) {
-            var red = imageData[i];
-            green = imageData[i + 1];
-            blue = imageData[i + 2];
-            alpha = imageData[i + 3];
+          for (var i = 0; i < imageData.data.length; i += 4000) {
+            var red = imageData.data[i];
+            var green = imageData.data[i+1];
+            var blue = imageData.data[i+2];
+       
+            var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6);
+            pixelColors.push(hex);
+            
         }
-         
-        console.log(imageData);
-    console.log(rgbToHex);
-    //console.log(hex);
-    console.log(imageData.data[0]);
-}
+        console.log(pixelColors);
+      
+//         console.log(imageData);
+//     console.log(rgbToHex);
+//     //console.log(hex);
+//     console.log(imageData.data[0]);
+ }
 
 var context = initContext('canvas','2d');
-var imageObj = loadImage('./assets/Schmetterling770x770.png',context);
+var imageObj = loadImage('./assets/Schmetterling55x55px.png',context);
 
 
 
