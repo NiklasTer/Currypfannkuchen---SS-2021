@@ -9,7 +9,7 @@ let socket = io();
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
-let myPlayerIndex = 1;
+let myPlayerIndex = 0;
 let selectedColorIndex = 0;
 
 
@@ -21,20 +21,20 @@ for (let i = 0; i < gridSize*gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 //------------Farb-Buttons------------------
-$('#button1').click(function() {
+$('#brush1').click(function() {
     selectedColorIndex = 0;
 });
-$('#button1').css("background-color", playerColors[myPlayerIndex][0]);
+$('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
-$('#button2').click(function() {
+$('#brush2').click(function() {
     selectedColorIndex = 1;
 });
-$('#button2').css("background-color", playerColors[myPlayerIndex][1]);
+$('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
-$('#button3').click(function() {
+$('#brush3').click(function() {
     selectedColorIndex = 2;
 });
-$('#button3').css("background-color", playerColors[myPlayerIndex][2]);
+$('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
 
 // //------------RGBA zu HEX Konvertieren------------------
