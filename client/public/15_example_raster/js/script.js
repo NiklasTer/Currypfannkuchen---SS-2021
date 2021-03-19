@@ -4,6 +4,8 @@ let socket = io();
 
 //------------globale Variablen------------------
 
+let myPlayerIndex = 0;
+// let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [['yellow', 'blue', `black`], ['red', 'green', `pink`], ['lime', 'tomato', 'orange'],['purple', 'grey', 'turquoise']];
@@ -15,7 +17,7 @@ let selectedColorIndex = 0;
 let gridSize = 55;
 $('.wrapper').children().remove();
 $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-for (let i = 0; i < gridSize * gridSize; i++) {
+for (let i = 0; i < gridSize*gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
 //------------Farb-Buttons------------------
@@ -168,7 +170,7 @@ socket.on('newUsersEvent', function (myID, myIndex, userList) {
 //------------Update-Funktion------------------
 
 function updateStatus() {
-    $('#player-status').html("There are " + playerCount + " players connected");
+    $('#player-status').html("Es sind " + playerCount + " Spieler verbunden");
 
     $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
     $('body').css("background-color", playerColors[myPlayerIndex] + "4"); 
