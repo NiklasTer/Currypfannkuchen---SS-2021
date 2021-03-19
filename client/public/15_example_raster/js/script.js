@@ -78,10 +78,10 @@ function readImage(imageData)
             alpha = imageData[i + 3];
         }
          
-        //onsole.log(imageData);
+        console.log(imageData);
     console.log(rgbToHex);
     //console.log(hex);
-    //console.log(imageData.data[0]);
+    console.log(imageData.data[0]);
 }
 
 var context = initContext('canvas','2d');
