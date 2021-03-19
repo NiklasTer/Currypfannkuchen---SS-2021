@@ -73,13 +73,15 @@ let pixelColors = [];
 
 function readImage(imageData)
 {
-          for (var i = 0; i < imageData.data.length; i += 4000) {
+          for (let i = 0; i < imageData.data.length; i += 4) {
+              // Iterationsnummer 4 inkorrekt - 3 besser?
             var red = imageData.data[i];
             var green = imageData.data[i+1];
             var blue = imageData.data[i+2];
-       
-            var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6);
+            var string = "/y"
+            var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6) + string;
             pixelColors.push(hex);
+            // pixelColors.push(string);
             
         }
         console.log(pixelColors);
@@ -93,9 +95,14 @@ function readImage(imageData)
 var context = initContext('canvas','2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png',context);
 
-
-
-    //let data = canvas.getContext('2d').getImageData(0, 0, 770, 770).data;
+//------------If-Sortierung nach HEX-Codes------------------
+// for (let i = 0; i < pixelColors.length; i++) {
+// if (pixelColors[i] =) {
+    
+// }
+    
+// }
+    
 
 
 //------------Klicken&Senden------------------
