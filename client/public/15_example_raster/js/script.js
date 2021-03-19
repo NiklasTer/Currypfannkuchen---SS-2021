@@ -4,7 +4,7 @@ let socket = io();
 
 //------------globale Variablen------------------
 
-let myPlayerIndex = 0;
+// 
 // let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
