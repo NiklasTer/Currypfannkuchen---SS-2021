@@ -8,10 +8,10 @@ let socket = io();
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [
-    ['yellow', 'blue', `black`],
-    ['red', 'green', `pink`],
-    ['lime', 'tomato', 'orange'],
-    ['purple', 'grey', 'turquoise']
+    ['#439E5F', '#7C0023', '#FFBC00'],
+    ['#000200', '#E50000', '#FF8908'],
+    ['#99C7F8', '#FF6600', '#910677'],
+    ['#070496', '#FFFF04', '#BC0036']
 ];
 let myPlayerIndex = 2;
 let selectedColorIndex = 0;
