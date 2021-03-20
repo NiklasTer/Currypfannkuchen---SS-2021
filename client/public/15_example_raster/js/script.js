@@ -184,10 +184,10 @@ socket.on('serverEvent', function (message) {
         $('.cell').addClass("empty");
         $('.cell').css("background-color", "white");
     }
-    if (message.type == "played") {
-        let cell = $('.wrapper').children()[message.cellIndex];
-        cell = $(cell);
-        cell.removeClass("empty");
+    // if (message.type == "played") {
+    //     let cell = $('.wrapper').children()[message.cellIndex];
+    //     cell = $(cell);
+    //     cell.removeClass("empty");
         //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
         //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
                 // if (playerColors[myPlayerIndex][0] === message.cellIndex) {
@@ -198,22 +198,22 @@ socket.on('serverEvent', function (message) {
             
         
      
-    }
-        if (whosTurn >= playerCount) {
-            whosTurn = 1;
-        }
-        updateStatus();
-    
-    // if (message.type == "played") {
-    //     let cell = $('.wrapper').children()[message.cellIndex];
-    //     cell = $(cell);
-    //     cell.removeClass("empty");
-    //     cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+    // }
     //     if (whosTurn >= playerCount) {
     //         whosTurn = 1;
     //     }
     //     updateStatus();
-    // }
+    
+    if (message.type == "played") {
+        let cell = $('.wrapper').children()[message.cellIndex];
+        cell = $(cell);
+        cell.removeClass("empty");
+        cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+        if (whosTurn >= playerCount) {
+            whosTurn = 1;
+        }
+        updateStatus();
+    }
 });
 
 //------------Reset/Neuer Nutzer kommt hinzu------------------
