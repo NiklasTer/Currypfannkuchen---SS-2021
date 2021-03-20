@@ -109,80 +109,41 @@ function readImage(imageData) {
         if (pixelColors[i].hex === "#439e5f") {
             pixelColors[i].str = "A"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#000200") {
             pixelColors[i].str = "B"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#070496") {
             pixelColors[i].str = "C"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#99c7f8") {
             pixelColors[i].str = "D"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#e50000") {
             pixelColors[i].str = "E"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#ffff04") {
             pixelColors[i].str = "F"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#bc0036") {
             pixelColors[i].str = "G"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {      
         if (pixelColors[i].hex === "#ff6600") {
             pixelColors[i].str = "H"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
-        
         if (pixelColors[i].hex === "#910677") {
             pixelColors[i].str = "I"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {  
         if (pixelColors[i].hex === "#ff8908") {
             pixelColors[i].str = "J"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
         if (pixelColors[i].hex === "#7c0023") {
             pixelColors[i].str = "K"
         }
-    }
-
-    for (let i = 0; i < pixelColors.length; i++) {
         if (pixelColors[i].hex === "#ffbc00") {
             pixelColors[i].str = "L"
         }
     }
+
 }
 
 var context = initContext('canvas', '2d');
@@ -242,7 +203,7 @@ socket.on('serverEvent', function (message) {
             whosTurn = 1;
         }
         updateStatus();
-    }
+    
     // if (message.type == "played") {
     //     let cell = $('.wrapper').children()[message.cellIndex];
     //     cell = $(cell);
