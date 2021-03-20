@@ -13,7 +13,7 @@ let playerColors = [
     ['lime', 'tomato', 'orange'],
     ['purple', 'grey', 'turquoise']
 ];
-let myPlayerIndex = 1;
+let myPlayerIndex = 2;
 let selectedColorIndex = 0;
 let str = "!!!!!!!!"
 
@@ -31,19 +31,26 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 //------------Farb-Buttons------------------
 $('#brush1').click(function() {
     selectedColorIndex = 0;
-    $("#brush1").toggleClass("transparent");
+    $("#brush1").removeClass("transparent");
+    $("#brush2").addClass("transparent");
+    $("#brush3").addClass("transparent");
+
 });
 $('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
 $('#brush2').click(function() {
     selectedColorIndex = 1;
-    $("#brush2").toggleClass("transparent");
+    $("#brush2").removeClass("transparent");
+    $("#brush1").addClass("transparent");
+    $("#brush3").addClass("transparent");
 });
 $('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
 $('#brush3').click(function() {
     selectedColorIndex = 2;
-    $("#brush3").toggleClass("transparent");
+    $("#brush3").removeClass("transparent");
+    $("#brush1").addClass("transparent");
+    $("#brush2").addClass("transparent");  
 });
 $('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
