@@ -29,20 +29,23 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 
 
 //------------Farb-Buttons------------------
-$('#button1').click(function () {
+$('#brush1').click(function() {
     selectedColorIndex = 0;
+    $("#brush1").toggleClass("transparent");
 });
-$('#button1').css("background-color", playerColors[myPlayerIndex][0]);
+$('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
-$('#button2').click(function () {
+$('#brush2').click(function() {
     selectedColorIndex = 1;
+    $("#brush2").toggleClass("transparent");
 });
-$('#button2').css("background-color", playerColors[myPlayerIndex][1]);
+$('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
-$('#button3').click(function () {
+$('#brush3').click(function() {
     selectedColorIndex = 2;
+    $("#brush3").toggleClass("transparent");
 });
-$('#button3').css("background-color", playerColors[myPlayerIndex][2]);
+$('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
 
 // //------------RGBA zu HEX Konvertieren------------------
