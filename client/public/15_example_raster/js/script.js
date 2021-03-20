@@ -26,6 +26,9 @@ $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
 for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
+for (let i = 0; i < gridSize * gridSize; i++) {
+    
+}
 
 
 //------------Farb-Buttons------------------
@@ -188,11 +191,13 @@ socket.on('serverEvent', function (message) {
         let cell = $('.wrapper').children()[message.cellIndex];
         cell = $(cell);
         cell.removeClass("empty");
+
         //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
         //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
 
         let brushColor = playerColors[message.playerIndex][message.selectedColorIndex].toUpperCase();
         let cellColor = pixelColors[message.cellIndex].hex.toUpperCase();
+        
         console.log(brushColor,cellColor)
         if (brushColor == cellColor) {
             
