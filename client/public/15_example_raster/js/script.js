@@ -29,30 +29,27 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 
 
 //------------Farb-Buttons------------------
-$('#brush1').click(function() {
+$('#brush1').click(function () {
     selectedColorIndex = 0;
     $("#brush1").removeClass("transparent");
     $("#brush2").addClass("transparent");
     $("#brush3").addClass("transparent");
 
 });
-$('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
-$('#brush2').click(function() {
+$('#brush2').click(function () {
     selectedColorIndex = 1;
     $("#brush2").removeClass("transparent");
     $("#brush1").addClass("transparent");
     $("#brush3").addClass("transparent");
 });
-$('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
-$('#brush3').click(function() {
+$('#brush3').click(function () {
     selectedColorIndex = 2;
     $("#brush3").removeClass("transparent");
     $("#brush1").addClass("transparent");
-    $("#brush2").addClass("transparent");  
+    $("#brush2").addClass("transparent");
 });
-$('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
 
 // //------------RGBA zu HEX Konvertieren------------------
@@ -96,16 +93,19 @@ function readImage(imageData) {
         var green = imageData.data[i + 1];
         var blue = imageData.data[i + 2];
         var hex = "#" + ("000000" + rgbToHex(red, green, blue)).slice(-6);
-        pixelColors.push({hex:hex, str:str});
-        
+        pixelColors.push({
+            hex: hex,
+            str: str
+        });
+
 
     }
     console.log(pixelColors);
 
-    
+
     //------------If-Sortierung nach HEX-Codes------------------
     for (let i = 0; i < pixelColors.length; i++) {
-        
+
         if (pixelColors[i].hex === "#439e5f") {
             pixelColors[i].str = "A"
         }
@@ -184,36 +184,41 @@ socket.on('serverEvent', function (message) {
         $('.cell').addClass("empty");
         $('.cell').css("background-color", "white");
     }
-    // if (message.type == "played") {
-    //     let cell = $('.wrapper').children()[message.cellIndex];
-    //     cell = $(cell);
-    //     cell.removeClass("empty");
-        //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
-        //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
-                // if (playerColors[myPlayerIndex][0] === message.cellIndex) {
-                //     cell.css("background-color", playerColors[myPlayerIndex][0]);
-                //}
-            //     cell.css("background-color", playerColors[myPlayerIndex][0]);
-            // }
-            
-        
-     
-    // }
-    //     if (whosTurn >= playerCount) {
-    //         whosTurn = 1;
-    //     }
-    //     updateStatus();
-    
     if (message.type == "played") {
         let cell = $('.wrapper').children()[message.cellIndex];
         cell = $(cell);
         cell.removeClass("empty");
-        cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
-        if (whosTurn >= playerCount) {
-            whosTurn = 1;
+        //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
+        //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
+
+        let brushColor = playerColors[message.playerIndex][message.selectedColorIndex].toUpperCase();
+        let cellColor = pixelColors[message.cellIndex].hex.toUpperCase();
+        console.log(brushColor,cellColor)
+        if (brushColor == cellColor) {
+            
+            cell.css("background-color", brushColor);
         }
-        updateStatus();
+        //cell.css("background-color", playerColors[myPlayerIndex][0]);
+        //   }
+
+
+
     }
+    if (whosTurn >= playerCount) {
+        whosTurn = 1;
+    }
+    updateStatus();
+
+    //     if (message.type == "played") {
+    //         let cell = $('.wrapper').children()[message.cellIndex];
+    //         cell = $(cell);
+    //         cell.removeClass("empty");
+    //         cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+    //         if (whosTurn >= playerCount) {
+    //             whosTurn = 1;
+    //         }
+    //         updateStatus();
+    //     }
 });
 
 //------------Reset/Neuer Nutzer kommt hinzu------------------
@@ -227,6 +232,10 @@ socket.on('newUsersEvent', function (myID, myIndex, userList) {
 
     playerCount = userList.length;
     myPlayerIndex = myIndex;
+
+    $('#brush1').css("fill", playerColors[myPlayerIndex][0]);
+    $('#brush2').css("fill", playerColors[myPlayerIndex][1]);
+    $('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
     updateStatus();
 });
