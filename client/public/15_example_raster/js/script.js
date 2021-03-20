@@ -3,7 +3,7 @@ let socket = io();
 
 //------------globale Variablen------------------
 
-// 
+
 // let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
@@ -15,7 +15,9 @@ let playerColors = [
 ];
 let myPlayerIndex = 1;
 let selectedColorIndex = 0;
-let str = "o"
+let str = "!!!!!!!!"
+
+
 
 //------------Div-Grid------------------
 let gridSize = 55;
@@ -24,6 +26,8 @@ $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
 for (let i = 0; i < gridSize * gridSize; i++) {
     $('.wrapper').append('<div class="cell empty"></div>');
 }
+
+
 //------------Farb-Buttons------------------
 $('#button1').click(function () {
     selectedColorIndex = 0;
@@ -51,6 +55,7 @@ function rgbToHex(r, g, b) {
     return ((r << 16) | (g << 8) | b).toString(16);
 }
 
+
 //------------Aufrufen des Bildes und Canvas------------------
 
 function initContext(canvasID, contextType) {
@@ -63,8 +68,8 @@ function loadImage(imageSource, context) {
     var imageObj = new Image();
     imageObj.onload = function () {
         context.imageSmoothingEnabled = false;
-        context.drawImage(imageObj, 0, 0, 770, 770);
-        var imageData = context.getImageData(0, 0, 770, 770);
+        context.drawImage(imageObj, 0, 0, 55, 55);
+        var imageData = context.getImageData(0, 0, 55, 55);
         readImage(imageData);
 
     };
@@ -87,6 +92,118 @@ function readImage(imageData) {
     }
     console.log(pixelColors);
 
+    
+    //------------If-Sortierung nach HEX-Codes------------------
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#439e5f") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "A"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#000200") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "B"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#070496") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "C"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#99c7f8") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "D"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#e50000") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "E"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#ffff04") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "F"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#bc0036") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "G"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#ff6600") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "H"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#910677") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "I"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#ff8908") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "J"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#7c0023") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "K"
+        }
+    }
+
+    for (let i = 0; i < pixelColors.length; i++) {
+        //console.log("treffer")
+        
+        if (pixelColors[i].hex === "#ffbc00") {
+         //   console.log("treffer2")
+            pixelColors[i].str = "L"
+        }
+    }
+
+
+    
     //         console.log(imageData);
     //     console.log(rgbToHex);
     //     //console.log(hex);
@@ -96,15 +213,7 @@ function readImage(imageData) {
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
 
-//------------If-Sortierung nach HEX-Codes------------------
-for (let i = 0; i < pixelColors.length; i++) {
-    //console.log("treffer")
-    
-    if (pixelColors[i].hex === "#439e5f") {
-        console.log("treffer2")
-        pixelColors[i].str = "1"
-    }
-}
+
 
 
 //------------Klicken&Senden------------------
