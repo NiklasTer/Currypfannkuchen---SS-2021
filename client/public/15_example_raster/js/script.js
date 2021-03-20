@@ -8,10 +8,10 @@ let socket = io();
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [
-    ['yellow', 'blue', `black`],
-    ['red', 'green', `pink`],
-    ['lime', 'tomato', 'orange'],
-    ['purple', 'grey', 'turquoise']
+    ['#439E5F', '#7C0023', '#FFBC00'],
+    ['#000200', '#E50000', '#FF8908'],
+    ['#99C7F8', '#FF6600', '#910677'],
+    ['#070496', '#FFFF04', '#BC0036']
 ];
 let myPlayerIndex = 0;
 let selectedColorIndex = 0;
@@ -31,19 +31,26 @@ for (let i = 0; i < gridSize * gridSize; i++) {
 //------------Farb-Buttons------------------
 $('#brush1').click(function() {
     selectedColorIndex = 0;
-    $("#brush1").toggleClass("transparent");
+    $("#brush1").removeClass("transparent");
+    $("#brush2").addClass("transparent");
+    $("#brush3").addClass("transparent");
+
 });
 $('#brush1').css("fill", playerColors[myPlayerIndex][0]);
 
 $('#brush2').click(function() {
     selectedColorIndex = 1;
-    $("#brush2").toggleClass("transparent");
+    $("#brush2").removeClass("transparent");
+    $("#brush1").addClass("transparent");
+    $("#brush3").addClass("transparent");
 });
 $('#brush2').css("fill", playerColors[myPlayerIndex][1]);
 
 $('#brush3').click(function() {
     selectedColorIndex = 2;
-    $("#brush3").toggleClass("transparent");
+    $("#brush3").removeClass("transparent");
+    $("#brush1").addClass("transparent");
+    $("#brush2").addClass("transparent");  
 });
 $('#brush3').css("fill", playerColors[myPlayerIndex][2]);
 
