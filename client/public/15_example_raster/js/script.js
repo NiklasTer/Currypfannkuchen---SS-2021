@@ -13,7 +13,7 @@ let playerColors = [
     ['lime', 'tomato', 'orange'],
     ['purple', 'grey', 'turquoise']
 ];
-let myPlayerIndex = 1;
+let myPlayerIndex = 0;
 let selectedColorIndex = 0;
 let str = "!!!!!!!!"
 
@@ -98,119 +98,84 @@ function readImage(imageData) {
     
     //------------If-Sortierung nach HEX-Codes------------------
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#439e5f") {
-         //   console.log("treffer2")
             pixelColors[i].str = "A"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#000200") {
-         //   console.log("treffer2")
             pixelColors[i].str = "B"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#070496") {
-         //   console.log("treffer2")
             pixelColors[i].str = "C"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#99c7f8") {
-         //   console.log("treffer2")
             pixelColors[i].str = "D"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#e50000") {
-         //   console.log("treffer2")
             pixelColors[i].str = "E"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#ffff04") {
-         //   console.log("treffer2")
             pixelColors[i].str = "F"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#bc0036") {
-         //   console.log("treffer2")
             pixelColors[i].str = "G"
         }
     }
 
-    for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
-        
+    for (let i = 0; i < pixelColors.length; i++) {      
         if (pixelColors[i].hex === "#ff6600") {
-         //   console.log("treffer2")
             pixelColors[i].str = "H"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
         
         if (pixelColors[i].hex === "#910677") {
-         //   console.log("treffer2")
             pixelColors[i].str = "I"
         }
     }
 
-    for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
-        
+    for (let i = 0; i < pixelColors.length; i++) {  
         if (pixelColors[i].hex === "#ff8908") {
-         //   console.log("treffer2")
             pixelColors[i].str = "J"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
-        
         if (pixelColors[i].hex === "#7c0023") {
-         //   console.log("treffer2")
             pixelColors[i].str = "K"
         }
     }
 
     for (let i = 0; i < pixelColors.length; i++) {
-        //console.log("treffer")
-        
         if (pixelColors[i].hex === "#ffbc00") {
-         //   console.log("treffer2")
             pixelColors[i].str = "L"
         }
     }
-
-
-    
-    //         console.log(imageData);
-    //     console.log(rgbToHex);
-    //     //console.log(hex);
-    //     console.log(imageData.data[0]);
 }
 
 var context = initContext('canvas', '2d');
@@ -251,17 +216,36 @@ socket.on('serverEvent', function (message) {
         $('.cell').addClass("empty");
         $('.cell').css("background-color", "white");
     }
-
     if (message.type == "played") {
         let cell = $('.wrapper').children()[message.cellIndex];
         cell = $(cell);
         cell.removeClass("empty");
-        cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+        //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
+        //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
+                // if (playerColors[myPlayerIndex][0] === message.cellIndex) {
+                //     cell.css("background-color", playerColors[myPlayerIndex][0]);
+                //}
+            //     cell.css("background-color", playerColors[myPlayerIndex][0]);
+            // }
+            
+        
+     
+    }
         if (whosTurn >= playerCount) {
             whosTurn = 1;
         }
         updateStatus();
     }
+    // if (message.type == "played") {
+    //     let cell = $('.wrapper').children()[message.cellIndex];
+    //     cell = $(cell);
+    //     cell.removeClass("empty");
+    //     cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
+    //     if (whosTurn >= playerCount) {
+    //         whosTurn = 1;
+    //     }
+    //     updateStatus();
+    // }
 });
 
 //------------Reset/Neuer Nutzer kommt hinzu------------------
@@ -284,6 +268,6 @@ socket.on('newUsersEvent', function (myID, myIndex, userList) {
 function updateStatus() {
     $('#player-status').html("Es sind " + playerCount + " Spieler verbunden");
 
-    $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
-    $('body').css("background-color", playerColors[myPlayerIndex] + "4");
+    // $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
+    // $('body').css("background-color", playerColors[myPlayerIndex] + "4");
 }
