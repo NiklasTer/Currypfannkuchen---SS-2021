@@ -136,12 +136,29 @@ function readImage(imageData) {
             pixelColors[i].str = "L"
         }
     }
+    
 
+
+    //------------Div-Grid------------------
+
+let gridSize = 55;
+$('.wrapper').children().remove();
+$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
+
+for (let i = 0; i < gridSize * gridSize; i++) {
+    
+    //$('.wrapper').append('<div class="cell empty"></div>');
+
+    //------------Buchtsaben in den Zellen------------------
+    $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+}
+    
+    
 }
 
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
-grid();
+
 
 
 
@@ -217,18 +234,7 @@ socket.on('serverEvent', function (message) {
 });
 
 
-//------------Div-Grid------------------
-function grid(){
-    let gridSize = 55;
-$('.wrapper').children().remove();
-$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
 
-for (let i = 0; i < gridSize * gridSize; i++) {
-    
-    $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
-
-}
-}
 
 
 
