@@ -19,16 +19,6 @@ let str = "!!!!!!!!"
 
 
 
-//------------Div-Grid------------------
-let gridSize = 55;
-$('.wrapper').children().remove();
-$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-for (let i = 0; i < gridSize * gridSize; i++) {
-    $('.wrapper').append('<div class="cell empty"></div>');
-}
-for (let i = 0; i < gridSize * gridSize; i++) {
-    
-}
 
 
 //------------Farb-Buttons------------------
@@ -151,7 +141,7 @@ function readImage(imageData) {
 
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
-
+grid();
 
 
 
@@ -225,6 +215,24 @@ socket.on('serverEvent', function (message) {
     //         updateStatus();
     //     }
 });
+
+
+//------------Div-Grid------------------
+function grid(){
+    let gridSize = 55;
+$('.wrapper').children().remove();
+$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
+
+for (let i = 0; i < gridSize * gridSize; i++) {
+    
+    $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+
+}
+}
+
+
+
+
 
 //------------Reset/Neuer Nutzer kommt hinzu------------------
 
