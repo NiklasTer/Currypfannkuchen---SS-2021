@@ -19,25 +19,23 @@ let str = "!!!!!!!!"
 
 
     //------------Div-Grid------------------
-
     let gridSize = 55;
     $('.wrapper').children().remove();
     $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-    
     for (let i = 0; i < gridSize * gridSize; i++) {
-        
+        console.log("log")
         $('.wrapper').append('<div class="cell empty"></div>');
     
         //------------Buchtsaben in den Zellen------------------
         //$('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
     }
         
-    var _img = document.getElementById('id1');
-    var newImg = new Image;
-    newImg.onload = function() {
-        _img.src = this.src;
-    }
-    newImg.src = './assets/grid.png';
+    // var _img = document.getElementById('id1');
+    // var newImg = new Image;
+    // newImg.onload = function() {
+    //     _img.src = this.src;
+    // }
+    // newImg.src = './assets/grid.png';
 
 //------------Farb-Buttons------------------
 $('#brush1').click(function () {
@@ -164,8 +162,22 @@ function readImage(imageData) {
 
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
+// console.log(pixelColors[150].str);
 
+setTimeout(forloop, 500)
 
+function forloop () {
+
+for (let i = 0; i < gridSize * gridSize; i++) {
+    //$('.wrapper').append('<div class="cell empty"></div>');
+
+    //------------Buchtsaben in den Zellen------------------
+    // $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+    $('.wrapper > div:nth-child(' + i + ')').text(pixelColors[i].str)
+    console.log(pixelColors[i].str);
+     //.text(String(pixelColors[i].str));
+}
+}
 //------------Klicken&Senden------------------
 
 $('.cell').click(function () {
@@ -218,7 +230,6 @@ socket.on('serverEvent', function (message) {
         //   }
 
 
-
     }
     if (whosTurn >= playerCount) {
         whosTurn = 1;
@@ -235,8 +246,11 @@ socket.on('serverEvent', function (message) {
     //         }
     //         updateStatus();
     //     }
-});
 
+    
+    
+   
+});
 
 
 
