@@ -18,8 +18,26 @@ let selectedColorIndex = 0;
 let str = "!!!!!!!!"
 
 
+    //------------Div-Grid------------------
 
-
+    let gridSize = 55;
+    $('.wrapper').children().remove();
+    $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
+    
+    for (let i = 0; i < gridSize * gridSize; i++) {
+        
+        $('.wrapper').append('<div class="cell empty"></div>');
+    
+        //------------Buchtsaben in den Zellen------------------
+        //$('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+    }
+        
+    var _img = document.getElementById('id1');
+    var newImg = new Image;
+    newImg.onload = function() {
+        _img.src = this.src;
+    }
+    newImg.src = './assets/grid.png';
 
 //------------Farb-Buttons------------------
 $('#brush1').click(function () {
@@ -75,8 +93,9 @@ function loadImage(imageSource, context) {
     };
     imageObj.src = imageSource;
     return imageObj;
-}
 
+
+}
 let pixelColors = [];
 
 function readImage(imageData) {
@@ -139,27 +158,12 @@ function readImage(imageData) {
     
 
 
-    //------------Div-Grid------------------
 
-let gridSize = 55;
-$('.wrapper').children().remove();
-$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-
-for (let i = 0; i < gridSize * gridSize; i++) {
-    
-    //$('.wrapper').append('<div class="cell empty"></div>');
-
-    //------------Buchtsaben in den Zellen------------------
-    $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
-}
-    
     
 }
 
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
-
-
 
 
 //------------Klicken&Senden------------------
