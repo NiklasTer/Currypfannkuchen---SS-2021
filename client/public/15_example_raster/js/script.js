@@ -212,7 +212,13 @@ socket.on('serverEvent', function (message) {
         }
         //cell.css("background-color", playerColors[myPlayerIndex][0]);
         //   }
-
+        // for (let i = 0; i < gridSize * gridSize; i++) {
+        //     //$('.wrapper').children().remove();
+        //     //$('.wrapper').append('<div class="cell empty"></div>');
+        
+        //     //------------Buchtsaben in den Zellen------------------
+        //     $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+        // }
 
 
     }
