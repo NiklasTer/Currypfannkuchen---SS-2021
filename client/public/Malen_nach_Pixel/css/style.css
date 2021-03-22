@@ -10,6 +10,7 @@ body {
     font-family: 'Raleway', sans-serif;
     font-size: 12px;
     line-height: 1.5;
+    cursor: pointer;
 }
 
 .left-container {
@@ -19,14 +20,14 @@ body {
 }
 
 .headline {
-    padding:15px;
+    padding: 15px;
 }
 
 .info {
     padding: 15px;
     margin-bottom: 15px;
     border-top-style: none;
-    border-bottom-style: solid ;
+    border-bottom-style: solid;
     border-color: #b4b4b4;
     border-width: 1px;
 }
@@ -44,7 +45,7 @@ body {
 }
 
 
-.brush > svg {
+.brush>svg {
     width: 100%;
     height: 100%;
 }
@@ -56,50 +57,41 @@ body {
     border-bottom-style: solid;
     border-color: #b4b4b4;
     border-width: 1px;
-    
-
 }
 
 
 .grid-container {
-    display:flex;
-    height:100vh;
+    position: relative;
+    display: flex;
+    height: 100vh;
     flex-grow: 2;
     justify-content: center;
     align-items: center;
 }
 
 .wrapper {
-    position: relative;
+    position: absolute;
     display: grid;
     grid-template-columns: repeat(4, 5px);
     grid-gap: 0px;
     grid-auto-rows: minmax(14px, auto);
-    
-    /* position:absolute;
+    opacity: 94%;
+}
+
+.id1 {
+    display: none;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 10%;
-     */
-}
-.id1 {
-        display: none;
-        position:absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%); 
-       
-    
-
 }
 
 #canvas {
     display: none;
-    position:absolute;
+    position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
 }
 
 .cell {
@@ -113,30 +105,37 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    background-color:#0088ff;
+    background-color: #0088ff;
     left: 20px;
     top: 200px;
 }
 
-#button2{
-    background-color:#8800ff;
+#button2 {
+    background-color: #8800ff;
     left: 20px;
     top: 350px;
 }
 
-#button3{
-    background-color:#1100ff;
+#button3 {
+    background-color: #1100ff;
     left: 20px;
     top: 450px;
 }
 
-img { 
-    image-rendering: optimizeSpeed;             /* STOP SMOOTHING, GIVE ME SPEED  */
-    image-rendering: -moz-crisp-edges;          /* Firefox                        */
-    image-rendering: -o-crisp-edges;            /* Opera                          */
-    image-rendering: -webkit-optimize-contrast; /* Chrome (and eventually Safari) */
-    image-rendering: pixelated; /* Chrome */
-    image-rendering: optimize-contrast;         /* CSS3 Proposed                  */
-    -ms-interpolation-mode: nearest-neighbor;   /* IE8+                           */
+img {
+    image-rendering: optimizeSpeed;
+    /* STOP SMOOTHING, GIVE ME SPEED  */
+    image-rendering: -moz-crisp-edges;
+    /* Firefox                        */
+    image-rendering: -o-crisp-edges;
+    /* Opera                          */
+    image-rendering: -webkit-optimize-contrast;
+    /* Chrome (and eventually Safari) */
+    image-rendering: pixelated;
+    /* Chrome */
+    image-rendering: optimize-contrast;
+    /* CSS3 Proposed                  */
+    -ms-interpolation-mode: nearest-neighbor;
+    /* IE8+                           */
 
 }
