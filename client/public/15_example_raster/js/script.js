@@ -30,12 +30,12 @@ let str = "!!!!!!!!"
         //$('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
     }
         
-    // var _img = document.getElementById('id1');
-    // var newImg = new Image;
-    // newImg.onload = function() {
-    //     _img.src = this.src;
-    // }
-    // newImg.src = './assets/grid.png';
+    var _img = document.getElementById('id1');
+    var newImg = new Image;
+    newImg.onload = function() {
+        _img.src = this.src;
+    }
+    newImg.src = './assets/Schmetterling770x770.png';
 
 //------------Farb-Buttons------------------
 $('#brush1').click(function () {
@@ -174,7 +174,7 @@ for (let i = 0; i < gridSize * gridSize; i++) {
     //------------Buchtsaben in den Zellen------------------
     // $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
     $('.wrapper > div:nth-child(' + i + ')').text(pixelColors[i].str)
-    console.log(pixelColors[i].str);
+    //console.log(pixelColors[i].str);
      //.text(String(pixelColors[i].str));
 }
 }
@@ -228,7 +228,13 @@ socket.on('serverEvent', function (message) {
         }
         //cell.css("background-color", playerColors[myPlayerIndex][0]);
         //   }
-
+        // for (let i = 0; i < gridSize * gridSize; i++) {
+        //     //$('.wrapper').children().remove();
+        //     //$('.wrapper').append('<div class="cell empty"></div>');
+        
+        //     //------------Buchtsaben in den Zellen------------------
+        //     $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
+        // }
 
     }
     if (whosTurn >= playerCount) {

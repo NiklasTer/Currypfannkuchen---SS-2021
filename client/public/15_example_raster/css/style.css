@@ -62,6 +62,7 @@ body {
 
 
 .grid-container {
+    position: relative;
     display:flex;
     height:100vh;
     flex-grow: 2;
@@ -70,16 +71,17 @@ body {
 }
 
 .wrapper {
+    position: absolute;
     display: grid;
     grid-template-columns: repeat(4, 5px);
     grid-gap: 0px;
     grid-auto-rows: minmax(14px, auto);
-    
+    opacity: 70%;
     /* position:absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    opacity: 10%;
+    
      */
 }
 .id1 {
