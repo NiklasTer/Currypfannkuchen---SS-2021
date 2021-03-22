@@ -3,8 +3,6 @@ let socket = io();
 
 //------------globale Variablen------------------
 
-
-// let playerColors = ['#f80', '#08f', '#80f', '#0f8', '#8f0', '#f08']
 let playerCount = 0;
 let allI = ['#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08', '#0f8', '#8f0', '#f08'];
 let playerColors = [
@@ -15,29 +13,29 @@ let playerColors = [
 ];
 let myPlayerIndex = 0;
 let selectedColorIndex = 0;
+let pixelColors = [];
 let str = "!!!!!!!!"
 
 
-    //------------Div-Grid------------------
-    let gridSize = 55;
-    $('.wrapper').children().remove();
-    $('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
-    for (let i = 0; i < gridSize * gridSize; i++) {
-        console.log("log")
-        $('.wrapper').append('<div class="cell empty"></div>');
-    
-        //------------Buchtsaben in den Zellen------------------
-        //$('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
-    }
-        
-    var _img = document.getElementById('id1');
-    var newImg = new Image;
-    newImg.onload = function() {
-        _img.src = this.src;
-    }
-    newImg.src = './assets/Schmetterling770x770.png';
+//------------Div-Grid------------------
+
+let gridSize = 55;
+$('.wrapper').children().remove();
+$('.wrapper').css("grid-template-columns", "repeat(" + gridSize + ", 14px)");
+for (let i = 0; i < gridSize * gridSize; i++) {
+    console.log("log")
+    $('.wrapper').append('<div class="cell empty"></div>');
+}
+
+var _img = document.getElementById('id1');
+var newImg = new Image;
+newImg.onload = function () {
+    _img.src = this.src;
+}
+newImg.src = './assets/Schmetterling770x770.png';
 
 //------------Farb-Buttons------------------
+
 $('#brush1').click(function () {
     selectedColorIndex = 0;
     $("#brush1").removeClass("transparent");
@@ -62,6 +60,7 @@ $('#brush3').click(function () {
 
 
 // //------------RGBA zu HEX Konvertieren------------------
+
 function rgbToHex(r, g, b) {
 
     if (r > 255 || g > 255 || b > 255)
@@ -91,14 +90,9 @@ function loadImage(imageSource, context) {
     };
     imageObj.src = imageSource;
     return imageObj;
-
-
 }
-let pixelColors = [];
-
 function readImage(imageData) {
     for (let i = 0; i < imageData.data.length; i += 4) {
-        // Iterationsnummer 4 inkorrekt - 3 besser?
         var red = imageData.data[i];
         var green = imageData.data[i + 1];
         var blue = imageData.data[i + 2];
@@ -114,6 +108,7 @@ function readImage(imageData) {
 
 
     //------------If-Sortierung nach HEX-Codes------------------
+
     for (let i = 0; i < pixelColors.length; i++) {
 
         if (pixelColors[i].hex === "#439e5f") {
@@ -153,30 +148,20 @@ function readImage(imageData) {
             pixelColors[i].str = "L"
         }
     }
-    
-
-
-
-    
 }
 
 var context = initContext('canvas', '2d');
 var imageObj = loadImage('./assets/Schmetterling55x55px.png', context);
-// console.log(pixelColors[150].str);
+
+//------------Buchtsaben in den Zellen------------------
 
 setTimeout(forloop, 500)
 
-function forloop () {
+function forloop() {
+    for (let i = 0; i < gridSize * gridSize; i++) {
 
-for (let i = 0; i < gridSize * gridSize; i++) {
-    //$('.wrapper').append('<div class="cell empty"></div>');
-
-    //------------Buchtsaben in den Zellen------------------
-    // $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
-    $('.wrapper > div:nth-child(' + i + ')').text(pixelColors[i].str)
-    //console.log(pixelColors[i].str);
-     //.text(String(pixelColors[i].str));
-}
+        $('.wrapper > div:nth-child(' + i + ')').text(pixelColors[i].str)
+    }
 }
 //------------Klicken&Senden------------------
 
@@ -216,53 +201,21 @@ socket.on('serverEvent', function (message) {
         cell.removeClass("empty");
 
         //------------Abfrage ausgewählte Farbe und Abgleich mit Zellfarbe------------------
-        //if (message.playerIndex ===0 && message.selectedColorIndex ===0) {
 
         let brushColor = playerColors[message.playerIndex][message.selectedColorIndex].toUpperCase();
         let cellColor = pixelColors[message.cellIndex].hex.toUpperCase();
-        
-        console.log(brushColor,cellColor)
+
+        console.log(brushColor, cellColor)
         if (brushColor == cellColor) {
-            
+
             cell.css("background-color", brushColor);
         }
-        //cell.css("background-color", playerColors[myPlayerIndex][0]);
-        //   }
-        // for (let i = 0; i < gridSize * gridSize; i++) {
-        //     //$('.wrapper').children().remove();
-        //     //$('.wrapper').append('<div class="cell empty"></div>');
-        
-        //     //------------Buchtsaben in den Zellen------------------
-        //     $('.wrapper').append('<div class="cell empty">'+String(pixelColors[i].str)+'</div>');
-        // }
-
     }
     if (whosTurn >= playerCount) {
         whosTurn = 1;
     }
     updateStatus();
-
-    //     if (message.type == "played") {
-    //         let cell = $('.wrapper').children()[message.cellIndex];
-    //         cell = $(cell);
-    //         cell.removeClass("empty");
-    //         cell.css("background-color", playerColors[message.playerIndex][message.selectedColorIndex]);
-    //         if (whosTurn >= playerCount) {
-    //             whosTurn = 1;
-    //         }
-    //         updateStatus();
-    //     }
-
-    
-    
-   
 });
-
-
-
-
-
-
 
 //------------Reset/Neuer Nutzer kommt hinzu------------------
 
@@ -287,7 +240,4 @@ socket.on('newUsersEvent', function (myID, myIndex, userList) {
 
 function updateStatus() {
     $('#player-status').html("Es sind " + playerCount + " Spieler verbunden");
-
-    // $('#playcolor').css("background-color", playerColors[myPlayerIndex]);
-    // $('body').css("background-color", playerColors[myPlayerIndex] + "4");
 }
